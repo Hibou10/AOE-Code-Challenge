@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AOE Card Game</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: white;
+      margin: 0;
+      padding: 10px;
+      color: #333;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    .overview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: calc(33.333% - 20px); /* Drei Karten pro Reihe */
+      box-sizing: border-box;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis; /* Textüberlauf anzeigen */
+}
+
+    .card:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      color: #007BFF;
+    }
+
+    .card-text {
+      overflow: hidden;
+      text-overflow: ellipsis; /* Textüberlauf mit '...' anzeigen */
+      white-space: nowrap; /* Keine Zeilenumbrüche */
+      color: #666;
+      margin: 0;
+    }
+
+    .details {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    .details h3 {
+      color: blue;
+    }
+
+    .card.selected {
+  border-color: #007BFF; /* Zeigt die Auswahl der Karte an */
+}
+
+  </style>
+</head>
+<body>
+  <div class="overview" id="cardOverview">
+    <!-- Cards will be dynamically generated here -->
+  </div>
+  
+  <div class="details" id="detailsView">
+    <h3>Details</h3>
+    <p id="detailsText">Click a card to see its details.</p>
+  </div>
+  
+
+
+
+    <!-- JAVASCRIPT -->
+
+
+
+
+  <script>
+
+    // Fetch data and populate cards
+    fetch("https://opensource.aoe.com/the-card-game-data/player.json")
+    .then((response) => response.json())
+    .then(data => {
+      populateCards(data);
+    })
+    .catch(error => console.error('Error fetching player data:', error));
+
+    function populateCards(players) {
+      const cardOverview = document.getElementById('cardOverview');
+      cardOverview.innerHTML = ''; // Clear existing content
+
+      players.forEach((player, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.setAttribute('onclick', `selectCard(${index})`);
+        card.innerHTML = `
+          <p class="card-text"> ${player.realName}</p> 
+          <p class="card-text"> ${player.playerName}</p>
+          <p class="card-text"> ${player.asset}</p>
+        `;
+        cardOverview.appendChild(card);
+      });
+    }
+
+    function selectCard(cardId) {
+      // Deselect all cards
+      document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
+
+      // Select the clicked card
+      const selectedCard = document.querySelector('.card:nth-child(' + (cardId + 1) + ')');
+      selectedCard.classList.add('selected');
+
+      // Fetch the data for the selected card
+      fetch("https://opensource.aoe.com/the-card-game-data/player.json")
+      .then(response => response.json())
+      .then(data => {
+        const player = data[cardId];
+
+        // Update the details view with the full content
+        
+        const detailsText = document.getElementById('detailsText');
+        detailsText.innerHTML = 
+        ` ${player.realName}<br>
+          ${player.playerName}<br>
+          ${player.asset}`;
+
+        // Show the details view if hidden
+        const detailsView = document.getElementById('detailsView');
+        detailsView.style.display = 'block';
+      })
+      .catch(error => console.error('Error fetching player data:', error));
+    }
+  </script>
+</body>
+</html>
