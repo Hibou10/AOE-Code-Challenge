@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AOE Card Game</title>
   <style>
-
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: grey;
@@ -27,7 +26,6 @@
       margin-bottom: 90px;
     }
 
-    
     .details, .controls {
       padding: 20px;
       background-color: grey;
@@ -35,13 +33,10 @@
       border-radius: 0px;
     }
 
-    
     .details {
       flex: 1.5;
-      display: none;
-      
+      visibility: hidden; /* Unsichtbar aber platzhaltend */
     }
-      
 
     .details h3 {
       color: white;
@@ -77,7 +72,6 @@
       cursor: pointer;
       transition: background-color 0.3s;
       position: relative;
-      
     }
 
     .control-box:hover {
@@ -102,7 +96,7 @@
       background-color: #f0f0f0;
     }
 
-     .overview-container {
+    .overview-container {
       display: flex;
       flex-direction: column; /* Titel und Karten untereinander */
       margin-left: 20px; /* Optionaler Abstand von der linken Seite */
@@ -207,7 +201,6 @@
       });
     }
 
-    
     function selectCard(cardId) {
       // Deselect all cards
       document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
@@ -224,14 +217,14 @@
 
         // Update the details view with the full content
         const detailsText = document.getElementById('detailsText');
-        detailsText.innerHTML = 
-        `${player.realName}<br>
-        ${player.playerName}<br>
-        ${player.asset}`;
+        detailsText.innerHTML = `
+          ${player.realName}<br>
+          ${player.playerName}<br>
+          ${player.asset}`;
 
-        // Show the details view if hidden
+        // Make the details view visible
         const detailsView = document.getElementById('detailsView');
-        detailsView.style.display = 'block';
+        detailsView.style.visibility = 'visible';
       })
       .catch(error => console.error('Error fetching player data:', error));
     }
