@@ -5,38 +5,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AOE Card Game</title>
   <style>
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: white;
-      margin: 0;
+      background-color: grey;
       padding: 10px;
-      color: #333;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    h3 {
-      margin-top: 0;
+    .container {
+      width: 100%;
+      max-width: 1200px;
     }
 
+    .top-section {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 90px;
+    }
+
+    
+    .details, .controls {
+      padding: 20px;
+      background-color: grey;
+      border: 1px solid white;
+      border-radius: 0px;
+    }
+
+    
+    .details {
+      flex: 1.5;
+      display: none;
+      
+    }
+      
+
+    .details h3 {
+      color: white;
+    }
+
+    .controls {
+      flex: 0.5;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+    
+    .controls h4 {
+      color: white;
+    }
+
+    .control-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .control-box {
+      background-color: grey;
+      border: 1px solid #ddd;
+      border-radius: 0px;
+      padding: 10px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      position: relative;
+      
+    }
+
+    .control-box:hover {
+      background-color: #f0f0f0;
+    }
+
+    .submit-box {
+      flex: none;
+      background-color: grey;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .submit-box:hover {
+      background-color: #f0f0f0;
+    }
+
+     .overview-container {
+      display: flex;
+      flex-direction: column; /* Titel und Karten untereinander */
+      margin-left: 20px; /* Optionaler Abstand von der linken Seite */
+    }
+
+    .overview-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: white;
+    }
+    
     .overview {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
+      width: 40%;
     }
 
     .card {
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
+      background-color: grey;
+      border: 1px solid white;
+      border-radius: 0px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      width: calc(33.333% - 20px); /* Drei Karten pro Reihe */
+      width: calc(33.333% - 20px);
       box-sizing: border-box;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      overflow: hidden;
-      text-overflow: ellipsis; /* Textüberlauf anzeigen */
-}
+      text-overflow: ellipsis;
+    }
 
     .card:hover {
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -49,52 +147,41 @@
 
     .card-text {
       overflow: hidden;
-      text-overflow: ellipsis; /* Textüberlauf mit '...' anzeigen */
-      white-space: nowrap; /* Keine Zeilenumbrüche */
-      color: #666;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: white;
       margin: 0;
     }
 
-    .details {
-      margin-top: 30px;
-      padding: 20px;
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      display: none;
-    }
-
-    .details h3 {
-      color: blue;
-    }
-
     .card.selected {
-  border-color: #007BFF; /* Zeigt die Auswahl der Karte an */
-}
+      border-color: blue;
+    }
 
   </style>
 </head>
 <body>
-  <div class="overview" id="cardOverview">
-    <!-- Cards will be dynamically generated here -->
+  <div class="container">
+    <div class="top-section">
+      <div class="details" id="detailsView">
+        <h3>Details</h3>
+        <p id="detailsText">Click a card to see its details.</p>
+      </div>
+      <div class="controls">
+        <h4>Controls</h4>
+        <div class="control-row">
+          <div class="control-box">SORT ASC</div>
+          <div class="control-box">SORT DESC</div>
+        </div>
+        <div class="submit-box">SUBMIT</div>
+      </div>
+    </div>
+    <div class="overview-title">Overview</div>
+    <div class="overview" id="cardOverview">
+      <!-- Cards will be dynamically generated here -->
+    </div>
   </div>
-  
-  <div class="details" id="detailsView">
-    <h3>Details</h3>
-    <p id="detailsText">Click a card to see its details.</p>
-  </div>
-  
-
-
-
-    <!-- JAVASCRIPT -->
-
-
-
 
   <script>
-
     // Fetch data and populate cards
     fetch("https://opensource.aoe.com/the-card-game-data/player.json")
     .then((response) => response.json())
@@ -112,14 +199,15 @@
         card.classList.add('card');
         card.setAttribute('onclick', `selectCard(${index})`);
         card.innerHTML = `
-          <p class="card-text"> ${player.realName}</p> 
-          <p class="card-text"> ${player.playerName}</p>
-          <p class="card-text"> ${player.asset}</p>
+          <p class="card-text">${player.realName}</p>
+          <p class="card-text">${player.playerName}</p>
+          <p class="card-text">${player.asset}</p>
         `;
         cardOverview.appendChild(card);
       });
     }
 
+    
     function selectCard(cardId) {
       // Deselect all cards
       document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
@@ -135,12 +223,11 @@
         const player = data[cardId];
 
         // Update the details view with the full content
-        
         const detailsText = document.getElementById('detailsText');
         detailsText.innerHTML = 
-        ` ${player.realName}<br>
-          ${player.playerName}<br>
-          ${player.asset}`;
+        `${player.realName}<br>
+        ${player.playerName}<br>
+        ${player.asset}`;
 
         // Show the details view if hidden
         const detailsView = document.getElementById('detailsView');
