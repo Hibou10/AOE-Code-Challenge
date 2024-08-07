@@ -68,6 +68,11 @@
       position: relative;
     }
 
+    .control-box.selected {
+      border-color: blue; /* Blaue Umrandung für ausgewählte Elemente */
+     
+    }
+
     .control-box:hover {
       background-color: #f0f0f0;
     }
@@ -130,7 +135,7 @@
     }
 
     .card h3 {
-      color: #007BFF;
+      color: blue;
     }
 
     .card-text {
@@ -144,3 +149,5 @@
     .card.selected {
       border-color: blue;
     }
+
+    

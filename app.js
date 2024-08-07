@@ -27,6 +27,23 @@ function populateCards(players) {
   });
 }
 
+// Selected Button in Controls Box will be marked in blue
+document.querySelectorAll('.control-box').forEach(box => {
+  box.addEventListener('click', function() {
+    // Entferne die 'selected' Klasse von allen 'control-box' Elementen
+    document.querySelectorAll('.control-box').forEach(b => b.classList.remove('selected'));
+    // Füge die 'selected' Klasse zum geklickten Element hinzu
+    this.classList.add('selected');
+  });
+});
+
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function() {
+    this.classList.toggle('selected');
+  });
+});
+
+
 function selectCard(cardId) {
   // Deselect all cards
   document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
