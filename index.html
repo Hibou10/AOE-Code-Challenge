@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,34 +9,50 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="bg-secondary text-light">
   <div class="container mt-4">
-    <div class="top-section d-flex mb-4">
-      <div class="details card bg-dark text-white flex-fill mr-2" id="detailsView">
+    <!-- Top Section -->
+    <div class="top-section row mb-4">
+      <!-- Details Section -->
+      <div class="details card bg-dark text-white col-md-8 mb-3 mb-md-0" id="detailsView">
         <div class="card-body">
           <h3 class="card-title">Details</h3>
           <p class="card-text" id="detailsText">Click a card to see its details.</p>
         </div>
       </div>
-      <div class="controls card bg-dark text-white flex-fill ml-2">
+      <!-- Controls Section -->
+      <div class="controls card bg-dark text-white col-md-4">
         <div class="card-body">
           <h4 class="card-title">Controls</h4>
           <div class="control-row d-flex mb-2">
-            <button class="btn btn-outline-light flex-fill mr-2" id="sortAsc">SORT ASC</button>
-            <button class="btn btn-outline-light flex-fill" id="sortDesc">SORT DESC</button>
+            <button class="btn btn-outline-light flex-fill mr-2" id="sortAsc">Sort Asc</button>
+            <button class="btn btn-outline-light flex-fill" id="sortDesc">Sort Desc</button>
           </div>
-          <button class="btn btn-outline-success w-100" id="submit">SUBMIT</button>
+          <button class="btn btn-outline-success btn-block" id="submit">Submit</button>
         </div>
       </div>
     </div>
-    <div class="overview-title text-white mb-4">Overview</div>
-    <div class="overview d-flex flex-wrap justify-content-center" id="cardOverview">
+    <!-- Overview Title -->
+    <h2 class="overview-title text-white mb-4">Overview</h2>
+    <!-- Overview Cards -->
+    <div class="overview row" id="cardOverview">
       <!-- Cards will be dynamically generated here -->
+      <!-- Example static card -->
+      <div class="col-md-4 mb-4">
+        <div class="card bg-dark text-white h-100">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Card Title</h5>
+            <p class="card-text">Card content goes here...</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="app.js"></script>
 </body>
+
 </html>
