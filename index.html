@@ -4,31 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AOE Card Game</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="container">
-    <div class="top-section">
-      <div class="details" id="detailsView">
-        <h3>Details</h3>
-        <p id="detailsText">Click a card to see its details.</p>
-      </div>
-      <div class="controls">
-        <h4>Controls</h4>
-        <div class="control-row">
-          <div class="control-box" id="sortAsc">SORT ASC</div>
-          <div class="control-box" id="sortDesc">SORT DESC</div>
+  <div class="container mt-4">
+    <div class="top-section d-flex mb-4">
+      <div class="details card bg-dark text-white flex-fill mr-2" id="detailsView">
+        <div class="card-body">
+          <h3 class="card-title">Details</h3>
+          <p class="card-text" id="detailsText">Click a card to see its details.</p>
         </div>
-        <div class="submit-box">SUBMIT</div>
+      </div>
+      <div class="controls card bg-dark text-white flex-fill ml-2">
+        <div class="card-body">
+          <h4 class="card-title">Controls</h4>
+          <div class="control-row d-flex mb-2">
+            <button class="btn btn-outline-light flex-fill mr-2" id="sortAsc">SORT ASC</button>
+            <button class="btn btn-outline-light flex-fill" id="sortDesc">SORT DESC</button>
+          </div>
+          <button class="btn btn-outline-success w-100" id="submit">SUBMIT</button>
+        </div>
       </div>
     </div>
-    <div class="overview-title">Overview</div>
-    <div class="overview" id="cardOverview">
+    <div class="overview-title text-white mb-4">Overview</div>
+    <div class="overview d-flex flex-wrap justify-content-center" id="cardOverview">
       <!-- Cards will be dynamically generated here -->
     </div>
   </div>
-  <script src="app.js"></script> 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="app.js"></script>
 </body>
-
 </html>

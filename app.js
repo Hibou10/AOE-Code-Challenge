@@ -16,7 +16,7 @@ function populateCards(players) {
 
   players.forEach((player, index) => {
     const card = document.createElement('div');
-    card.classList.add('card');
+    card.classList.add('card', 'bg-dark', 'text-white', 'mb-2');
     card.setAttribute('onclick', `selectCard(${index})`);
     card.innerHTML = `
       <p class="card-text">${player.realName}</p>
@@ -42,7 +42,6 @@ document.querySelectorAll('.card').forEach(card => {
     this.classList.toggle('selected');
   });
 });
-
 
 function selectCard(cardId) {
   // Deselect all cards
