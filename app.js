@@ -37,6 +37,14 @@ function populateCards(players) {
 
 // Handle card selection
 function selectCard(playerName) {
+  // If the clicked card is already selected, deselect it and clear details
+  if (selectedPlayerName === playerName) {
+    document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
+    document.getElementById('detailsView').style.visibility = 'hidden';
+    selectedPlayerName = null; // Clear the selected player
+    return; // Exit the function early
+  }
+
   // Deselect all cards
   document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
 
