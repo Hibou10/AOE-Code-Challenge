@@ -1,153 +1,150 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: grey;
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: grey;
-      padding: 10px;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.container {
+  width: 100%;
+  max-width: 1200px;
+}
 
-    .container {
-      width: 100%;
-      max-width: 1200px;
-    }
+.top-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 90px;
+}
 
-    .top-section {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 90px;
-    }
+.details, .controls {
+  padding: 20px;
+  background-color: grey;
+  border: 1px solid white;
+  border-radius: 0px;
+}
 
-    .details, .controls {
-      padding: 20px;
-      background-color: grey;
-      border: 1px solid white;
-      border-radius: 0px;
-    }
+.details {
+  flex: 1.5;
+  visibility: hidden; /* Unsichtbar aber platzhaltend */
+}
 
-    .details {
-      flex: 1.5;
-      visibility: hidden; /* Unsichtbar aber platzhaltend */
-    }
+.details h3 {
+  color: white;
+}
 
-    .details h3 {
-      color: white;
-    }
+.controls {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
 
-    .controls {
-      flex: 0.5;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      position: relative;
-    }
-    
-    .controls h4 {
-      color: white;
-    }
+.controls h4 {
+  color: white;
+}
 
-    .control-row {
-      display: flex;
-      gap: 10px;
-    }
+.control-row {
+  display: flex;
+  gap: 10px;
+}
 
-    .control-box {
-      background-color: grey;
-      border: 1px solid #ddd;
-      border-radius: 0px;
-      padding: 10px;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      position: relative;
-    }
+.control-box {
+  background-color: grey;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+}
 
-    .control-box.selected {
-      border-color: blue; /* Blaue Umrandung für ausgewählte Elemente */
-     
-    }
+.control-box.selected {
+  border-color: blue; /* Blaue Umrandung für ausgewählte Elemente */
+ 
+}
 
-    .control-box:hover {
-      background-color: #f0f0f0;
-    }
+.control-box:hover {
+  background-color: #f0f0f0;
+}
 
-    .submit-box {
-      flex: none;
-      background-color: grey;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+.submit-box {
+  flex: none;
+  background-color: grey;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-    .submit-box:hover {
-      background-color: #f0f0f0;
-    }
+.submit-box:hover {
+  background-color: #f0f0f0;
+}
 
-    .overview-container {
-      display: flex;
-      flex-direction: column; /* Titel und Karten untereinander */
-      margin-left: 20px; /* Optionaler Abstand von der linken Seite */
-    }
+.overview-container {
+  display: flex;
+  flex-direction: column; /* Titel und Karten untereinander */
+  margin-left: 20px; /* Optionaler Abstand von der linken Seite */
+}
 
-    .overview-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: white;
-    }
-    
-    .overview {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      width: 40%;
-    }
+.overview-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+}
 
-    .card {
-      background-color: grey;
-      border: 1px solid white;
-      border-radius: 0px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      width: calc(33.333% - 20px);
-      box-sizing: border-box;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      text-overflow: ellipsis;
-    }
+.overview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 40%;
+}
 
-    .card:hover {
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transform: translateY(-5px);
-    }
+.card {
+  background-color: grey;
+  border: 1px solid white;
+  border-radius: 0px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
 
-    .card h3 {
-      color: white;
-    }
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
 
-    .card-text {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      color: white;
-      margin: 0;
-    }
+.card h3 {
+  color: white;
+}
 
-    .card.selected {
-      border-color: blue;
-    }
+.card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: white;
+  margin: 0;
+}
 
-    
+.card.selected {
+  border-color: blue;
+}
