@@ -1,7 +1,7 @@
 let playerData = [];
 let selectedPlayerName = null; // Variable zum Speichern des playerName der ausgewählten Karte
 
-// Fetch data and populate cards
+// Fetch data 
 fetch("https://opensource.aoe.com/the-card-game-data/player.json")
   .then(response => response.json())
   .then(data => {
@@ -11,38 +11,37 @@ fetch("https://opensource.aoe.com/the-card-game-data/player.json")
   .catch(error => console.error('Error fetching player data:', error));
 
 
-// Populate cards with player information
+// Karten mit Spielerinformationen füllen
 function populateCards(players) {
   const cardOverview = document.getElementById('cardOverview');
-  cardOverview.innerHTML = ''; // Clear existing content
+  cardOverview.innerHTML = ''; 
 
   players.forEach((player, index) => {
     const card = document.createElement('div');
     card.classList.add('card', 'bg-dark', 'text-white', 'mb-2');
-    card.setAttribute('data-player-name', player.playerName); // Use playerName as unique identifier
+    card.setAttribute('data-player-name', player.playerName); 
     card.innerHTML = `
       <p class="card-text">${player.realName}</p>
       <p class="card-text">${player.playerName}</p>
       <p class="card-text">${player.asset}</p>
     `;
-    card.addEventListener('click', () => selectCard(player.playerName)); // Use playerName to identify the card
+    card.addEventListener('click', () => selectCard(player.playerName)); 
     cardOverview.appendChild(card);
   });
 
-  // If there is a selected card, update the selection after repopulating cards
+  
   if (selectedPlayerName) {
     selectCard(selectedPlayerName);
   }
 }
 
-// Handle card selection
 function selectCard(playerName) {
   // If the clicked card is already selected, deselect it and clear details
   if (selectedPlayerName === playerName) {
     document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
     document.getElementById('detailsView').style.visibility = 'hidden';
     selectedPlayerName = null; // Clear the selected player
-    return; // Exit the function early
+    return; 
   }
 
   // Deselect all cards
@@ -54,7 +53,7 @@ function selectCard(playerName) {
     selectedCard.classList.add('selected');
   }
 
-  // Get the player data from the globally stored data
+  // Get the player data from the stored data
   const player = playerData.find(p => p.playerName === playerName);
 
   // Update the details view with the full content
