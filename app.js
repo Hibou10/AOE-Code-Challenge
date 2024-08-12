@@ -1,5 +1,5 @@
 let playerData = [];
-let selectedPlayerName = null; // Variable zum Speichern des playerName der ausgewählten Karte
+let selectedPlayerName = null; 
 
 // Fetch data 
 fetch("https://opensource.aoe.com/the-card-game-data/player.json")
